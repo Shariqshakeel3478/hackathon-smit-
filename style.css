@@ -1,0 +1,328 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.main{
+  position: relative;
+}
+/* hero section */
+
+
+
+#hero {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 15px 0;
+    height: 70px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.location, .logo, .buttons {
+    display: flex;
+    height: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 20px;
+    color: #ff4f00;
+}
+
+.location p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+}
+
+.location span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.buttons .btn {
+    background-color: transparent;
+    border: 1px solid #ff4f00;
+    color: #ff4f00;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.buttons .btn:hover {
+    background-color: #ff4f00;
+    color: #fff;
+}
+
+
+
+#categories {
+    width: 100%;
+    position: fixed;
+    top: 70px;
+    z-index: 100;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    top: 60px;
+}
+
+#categories ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+    list-style: none;
+    margin: 0;
+    overflow-x: auto;
+}
+
+#categories ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+}
+
+#categories ul li a:hover {
+    color: #ff4f00;
+}
+
+
+
+
+/* banner */
+
+#banner {
+  position: relative;
+  height: 450px;
+  background-image: url(https://foodsquare.co.in/wp-content/uploads/2015/11/Homepage-Banner-4.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+#banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* black tint with 30% opacity */
+  z-index: 1;
+}
+
+#banner > * {
+  z-index: 2; /* so content stays above the tint */
+}
+
+
+.banner-top {
+    top: 0;
+    left:100px;
+    height: 200px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    border-radius: 10px;
+    position: absolute;
+
+}
+
+.banner-top h2{
+  font-weight: 900;
+
+}
+.banner-top p{
+  font-size: 20px;
+}
+
+.banner-bottom {
+    bottom: 100px;
+   left: 100px;
+    height: 150px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: absolute;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.pill {
+    width: 110px;
+    height: 40px;
+    border: none;
+    border-radius: 50px;
+    background-color: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid orange;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.pill i {
+    margin-right: 5px;
+}
+
+.pill:hover {
+    background-color: orange;
+    color: #fff;
+}
+
+.pill.active {
+    background-color: orange;
+    color: white;
+}
+
+.bottom {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    height: 45px;
+    border-radius: 25px;
+    padding-left: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+#search {
+    width: 70%;
+    outline: 0;
+    border: none;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.bottom button {
+    border: none;
+    border-radius: 25px;
+    height: 100%;
+    width: 110px;
+    font-size: 14px;
+    background-color: #ff4f00;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bottom button:hover {
+    background-color: #e64100;
+}
+
+
+/* back to top btn */
+
+#back-to-top {
+  width: 50px;
+  height: 50px;
+  background-color: #ff4f00;
+  color: #ddd;
+  position: fixed;
+  right: 50px;
+  bottom: 60px;
+  z-index: 1000;
+  opacity: 0.5;
+}
+
+/* features */
+
+#features{
+  width: 80%;
+  position: relative;
+  display: flex;
+  top: -20px;
+  z-index: 1;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+#features #card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px 25px;
+  max-width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 150px;
+}
+
+#card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  color: #ff4f00;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.card-header i {
+  font-size: 28px;
+  color: #e64100;
+}
+
+#card p:last-child {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* resturants */
+
+#resturant{
+  background-color: #e64100;
+}
