@@ -36,7 +36,7 @@
                 </div>
                 <div class="buttons">
                     <button class="btn">Login</button>
-                    <button class="btn">Sign Up</button>
+                    <button class="btn">Signup</button>
                 </div>
             </nav>
 
@@ -118,18 +118,164 @@
     </section>
 
 
-    <section id="resturants" class="container">
+    <section class="container" id="resturant-section" style="width: 100%;">
         <h1>All Restaurants</h1>
 
-        <div class="row">
-            <div class="card" id="resturant" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card’s content.</p>
+        <div class="row" id="resturants">
+            <div id="resturant">
+                <img src="images/fried chicken.jpg" alt="kfc">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">Kentucky Fried Chicken</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p id="rating">orders: 2000+</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="resturant">
+                <img src="images/fried chicken.jpg" alt="kfc">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">Kentucky Fried Chicken</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p id="rating">orders: 2000+</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="resturant">
+                <img src="images/fried chicken.jpg" alt="kfc">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">Kentucky Fried Chicken</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p id="rating">orders: 2000+</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="resturant">
+                <img src="images/fried chicken.jpg" alt="kfc">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">Kentucky Fried Chicken</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p id="rating">orders: 2000+</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="resturant">
+                <img src="images/fried chicken.jpg" alt="kfc">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">Kentucky Fried Chicken</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p id="rating">orders: 2000+</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+        <button class="btn" id="add" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="add()"><i
+                class="fa-solid fa-plus"></i>Add resturant</button>
+        <button class="btn" id="show" onclick="show()"><i class="fa-solid fa-caret-down"></i>Show more</button>
+        <button class="btn" id="hide" onclick="hide()" style="display: none;"><i class="fa-solid fa-caret-up"></i>Show
+            less</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header border-bottom-0">
+                        <h1 class="modal-title fs-4 fw-semibold" id="staticBackdropLabel">Add New Restaurant</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-4">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="name" placeholder="Enter restaurant name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Thumbnail:</label>
+                            <input type="file" id="url" class="form-control">
+                        </div>
+                        <div class="mb-3 items">
+                            <label class="form-label fw-medium">Add Food Item:</label>
+                            <div class="d-flex gap-2 align-items-center mb-2">
+                                <input type="text" id="food" class="form-control" placeholder="Food item name">
+                                <input type="number" id="price" class="form-control" placeholder="Price">
+                                <button class="btn btn-success" onclick="items()">Add</button>
+                            </div>
+                            <div class="item-list">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0 px-4">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addRes()">Save Restaurant</button>
+                    </div>
                 </div>
             </div>
         </div>
+
 
     </section>
 

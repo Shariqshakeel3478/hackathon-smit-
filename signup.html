@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4070f4;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Signup</h2>
+        <input type="text" id="signupUsername" placeholder="Username" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+        <button onclick="signUp()">Sign Up</button>
+    </div>
+</body>
+<script>
+    function signUp() {
+        let username = document.getElementById('signupUsername').value;
+        let password = document.getElementById('signupPassword').value;
+
+        if (!username || !password) return alert("Fields cannot be empty!");
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        let exists = users.find(user => user.name === username);
+        if (exists) return alert("Username already exists!");
+
+        users.push({
+            name: username,
+            password: password
+        });
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Signup successful!");
+    }
+</script>
+
+</html>
