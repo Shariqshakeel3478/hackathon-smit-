@@ -1,8 +1,8 @@
-const buttons = document.querySelectorAll('.pill');
+const pills = document.querySelectorAll('.pill');
 
-buttons.forEach(btn => {
+pills.forEach(btn => {
     btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
+        pills.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
     });
 });
@@ -122,7 +122,93 @@ function addRes() {
     let resName = document.getElementById('name');
     let resURL = document.getElementById('res-url');
 
-let newRes = document.createElement('div');
+    let newRes = document.createElement('div');
 
 
 }
+
+
+// go to login through button
+function gotoLogin() {
+    window.location.href = 'loginn.html'
+}
+
+// goto signup
+
+function gotoSignup() {
+    window.location.href = 'signup.html'
+}
+
+// back to top
+const scrollBtn = document.getElementById("back-to-top");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+        scrollBtn.classList.add("visible");
+    } else {
+        scrollBtn.classList.remove("visible");
+    }
+});
+
+
+// filter buttons
+
+const buttons = document.querySelectorAll(".selection-buttons button");
+const cards = document.querySelectorAll("#resturants #resturant");
+
+function filterCards(e) {
+
+    buttons.forEach(btn => btn.classList.remove("active"));
+    e.currentTarget.classList.add("active");
+    const selectedCategory = e.currentTarget.dataset.name;
+
+    cards.forEach(card => {
+        const cardCategory = card.dataset.name;
+        if (selectedCategory === "all" || cardCategory === selectedCategory) {
+            card.classList.remove("hide");
+        } else {
+            card.classList.add("hide");
+        }
+    });
+}
+
+buttons.forEach(button => button.addEventListener("click", filterCards));
+
+
+
+// display all cards in index.html
+
+function displayResturants() {
+    let resturantContainer = document.getElementById('resturants');
+    const allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
+
+
+
+    allRes.forEach((res) => {
+        let card = `
+        <div id="resturant" class="hide" data-name="${res.resturantCategory}">
+            <img src="${res.resturantURL}" alt="restaurant image">
+            <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+            <div class="resturant-des">
+                <p id="res-name">${res.name}</p>
+                <div id="orderAndRating">
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </div>
+                    <div class="orders">
+                        <p class="rating">orders: 2000+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+        resturantContainer.innerHTML += card;
+
+    });
+}
+
+displayResturants()

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>admin</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #selection-btn button.active {
+
+            color: #fff;
+            background-color: #4070f4;
+            border-bottom: 2px solid #fff;
+        }
+
+        .hide {
+            display: none;
+        }
+
+
+        #sidebar-btn {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background-color: #ff4f00;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+            height: 35px;
+        }
+
+        #sidebar-btn:hover {
+            background-color: transparent;
+            border: 1px solid #ff4f00;
+            color: #ff4f00;
+            padding: 5px 15px;
+        }
+
+        #home-btn {
+            background-color: #ff4f00;
+            border-radius: 20px;
+            font-size: 16px;
+            transition: 0.3s;
+            width: 180px;
+            height: 35px;
+            border: none;
+
+        }
+
+        #home-btn:hover {
+            background-color: transparent;
+            border: 1px solid #ff4f00;
+            color: #ff4f00;
+            padding: 5px 15px;
+        }
+
+        #home-btn a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #home-btn a:hover {
+            color: #ff4f00;
+
+        }
+
+
+        .selection-buttons {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+            margin-bottom: 70px;
+        }
+
+
+
+        .selection-buttons>button {
+            width: 150px;
+            border: none;
+            height: 30px;
+            border-radius: 20px;
+            background-color: transparent;
+            border: 1px solid #ff4f00;
+            color: #ff4f00;
+            padding: 5px 15px;
+            font-size: 13px;
+            transition: 0.3s;
+
+        }
+
+        .selection-buttons>button:hover {
+            background-color: #ff4f00;
+            color: #fff;
+        }
+
+        .selection-buttons>button i {
+            margin-right: 10px;
+
+        }
+
+        #sidebar-bottom-btn {
+            color: #fff;
+            background-color: #ff4f00;
+        }
+
+        #sidebar-bottom-btn:hover {
+            background-color: transparent;
+            color: #ff4f00;
+            border: 1px solid #ff4f00;
+        }
+
+        /* selection buttons */
+    </style>
+</head>
+
+<body>
+
+
+    <section class="container" id="sidebar">
+
+        <!-- side bar for resturant addition -->
+        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling" id="sidebar-btn">Add Resturant</button>
+
+        <button id="home-btn"><a href="index.html">Go to Home page</a></button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title fw-semibold " style="color: #ff4f00;" id="offcanvasScrollingLabel">Add
+                    Restaurant</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" id="sidebar-body">
+                <form class="d-flex flex-column gap-3">
+                    <div>
+                        <label for="res-name" class="form-label text-muted">Restaurant Name</label>
+                        <input type="text" class="form-control" id="res-name" required placeholder="e.g. Pizza Point">
+                    </div>
+                    <div>
+                        <label for="res-url" class="form-label text-muted">Upload Image</label>
+                        <input type="file" class="form-control" id="res-url" required>
+                    </div>
+                    <div>
+                        <label for="res-category" class="form-label text-muted">Category</label>
+                        <select class="form-select" id="res-category" required>
+                            <option selected disabled>-- Select --</option>
+                            <option>Restaurant</option>
+                            <option>Grocery</option>
+                            <option>Shop</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn w-100 rounded-pill" id="sidebar-bottom-btn"
+                        onclick="addRes(event)">Add
+                        Restaurant</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- side bar end -->
+
+    <!-- resturants cards -->
+
+    <section class="container">
+        <div class="selection-buttons">
+            <button class="selection-btn" data-name="all"><i class="fa-solid fa-utensils"></i>All</button>
+            <button class="selection-btn" data-name="Restaurant"><i
+                    class="fa-solid fa-bowl-food"></i>Resturants</button>
+            <button class="selection-btn" data-name="Grocery"><i
+                    class="fa-solid fa-cart-shopping"></i>Groceries</button>
+            <button class="selection-btn" data-name="Shop"><i class="fa-solid fa-store"></i>Shops</button>
+        </div>
+
+        <h1>All Resturants</h1>
+        <div class="row" id="resturants">
+            <div id="resturant">
+                <img src="images/fried chicken.jpg" alt="kfc">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">Kentucky Fried Chicken</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p id="rating">orders: 2000+</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
+
+
+
+        </div>
+    </section>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
+</script>
+<script>
+    let selectBtn = document.querySelectorAll('.selection-btn')
+    selectBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+
+    // selection buttons
+
+
+    let allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
+
+    function addRes(event) {
+        event.preventDefault();
+        let resName = document.getElementById('res-name');
+        let resURL = document.getElementById('res-url');
+        let resCategory = document.getElementById('res-category');
+
+        if (!resName.value || !resURL.files.length || !resCategory.value || resCategory.value === '-- Select --') {
+            alert('Please fill in all the fields.');
+            return;
+        }
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            let resturant = {
+                name: resName.value,
+                resturantURL: reader.result,
+                resturantCategory: resCategory.value
+            };
+
+            allRes.push(resturant);
+            localStorage.setItem('Resturants', JSON.stringify(allRes));
+
+            Swal.fire({
+                title: "Good job!",
+                text: "Restaurant Added",
+                icon: "success"
+            });
+
+            displayResturants(); // call here after adding
+        }
+
+        reader.readAsDataURL(resURL.files[0]);
+
+    }
+
+    function displayResturants() {
+        let resturantContainer = document.getElementById('resturants');
+        const allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
+        allRes.forEach((res) => {
+            let card = `
+        <div id="resturant" data-name="${res.resturantCategory}">
+            <img src="${res.resturantURL}" alt="restaurant image">
+            <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+            <div class="resturant-des">
+                <p id="res-name">${res.name}</p>
+                <div id="orderAndRating">
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </div>
+                    <div class="orders">
+                        <p class="rating">orders: 2000+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+            resturantContainer.innerHTML += card;
+        });
+
+
+        // filter cards
+
+
+
+        const buttons = document.querySelectorAll(".selection-buttons button");
+        const cards = document.querySelectorAll("#resturants #resturant");
+
+        function filterCards(e) {
+
+            buttons.forEach(btn => btn.classList.remove("active"));
+            e.currentTarget.classList.add("active");
+            const selectedCategory = e.currentTarget.dataset.name;
+
+            cards.forEach(card => {
+                const cardCategory = card.dataset.name;
+                if (selectedCategory === "all" || cardCategory === selectedCategory) {
+                    card.classList.remove("hide");
+                } else {
+                    card.classList.add("hide");
+                }
+            });
+        }
+
+        buttons.forEach(button => button.addEventListener("click", filterCards));
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>
