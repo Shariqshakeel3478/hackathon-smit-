@@ -35,6 +35,7 @@ function hide() {
 
 
 let allUsers = JSON.parse(localStorage.getItem('all users')) || [];
+console.log(allUsers)
 
 function signIn() {
     let userName = document.getElementById('username').value;
@@ -47,7 +48,8 @@ function signIn() {
 
     let user = {
         name: userName,
-        password: pass
+        password: pass,
+        resturants: [] // separate resturant for each admin
     }
 
     allUsers.push(user);
@@ -55,11 +57,14 @@ function signIn() {
     alert("Signup successful");
 }
 
+
+
 function login() {
     let userName = document.getElementById('username').value;
     let pass = document.getElementById('password').value;
 
     let allUsers = JSON.parse(localStorage.getItem('all users')) || [];
+    // let currentUser = allUsers.find(user => user.name === userName);
 
     let match = allUsers.filter(user => user.name === userName && user.password === pass);
 
@@ -76,56 +81,56 @@ function login() {
 
 // admin panel
 
-let resturants = [];
 
-function addItems() {
-    let resturantName = document.getElementById('res-name').value;
-    let resUrl = document.getElementById('res-thumbnail').value;
-    let item = document.getElementById('item').value;
-    let itemPrice = document.getElementById('item-price').value;
-    let resCategory = document.getElementById('select').value
-    let foodItem = {
-        foodItem: item,
-        price: itemPrice
-    }
-    let resturant = {
-        name: resturantName,
-        image: resUrl,
-        foodItems: [],
-        category: resCategory
-    }
-    resturant.foodItems.push(foodItem)
-    resturants.push(resturant)
-    localStorage.setItem('resturants', JSON.stringify(resturants))
 
-}
+// function addItems() {
+//     let resturantName = document.getElementById('res-name').value;
+//     let resUrl = document.getElementById('res-thumbnail').value;
+//     let item = document.getElementById('item').value;
+//     let itemPrice = document.getElementById('item-price').value;
+//     let resCategory = document.getElementById('select').value
+//     let foodItem = {
+//         foodItem: item,
+//         price: itemPrice
+//     }
+//     let resturant = {
+//         name: resturantName,
+//         image: resUrl,
+//         foodItems: [],
+//         category: resCategory
+//     }
+//     resturant.foodItems.push(foodItem)
+//     resturants.push(resturant)
+//     localStorage.setItem('resturants', JSON.stringify(resturants))
+
+// }
 
 // modal
 
-function items() {
-    let items = document.querySelector('.item-list');
-    let item = document.getElementById('food');
-    let itemPrice = document.getElementById('price')
-    let newItem = document.createElement('div');
-    newItem.classList.add('item');
-    newItem.innerHTML = `
-    <p>${item.value}</p>
-    <p>${itemPrice.value}</p>
-    <i class="fa-solid fa-xmark style=" cursor: pointer;"></i>
-    `
-    items.appendChild(newItem)
+// function items() {
+//     let items = document.querySelector('.item-list');
+//     let item = document.getElementById('food');
+//     let itemPrice = document.getElementById('price')
+//     let newItem = document.createElement('div');
+//     newItem.classList.add('item');
+//     newItem.innerHTML = `
+//     <p>${item.value}</p>
+//     <p>${itemPrice.value}</p>
+//     <i class="fa-solid fa-xmark style=" cursor: pointer;"></i>
+//     `
+//     items.appendChild(newItem)
 
-}
-
-
-function addRes() {
-    let resName = document.getElementById('name');
-    let resURL = document.getElementById('res-url');
-
-    let newRes = document.createElement('div');
+// }
 
 
-}
+// function addRes() {
+//     let resName = document.getElementById('name');
+//     let resURL = document.getElementById('res-url');
+
+//     let newRes = document.createElement('div');
+
+
+// }
 
 
 // go to login through button
@@ -138,18 +143,6 @@ function gotoLogin() {
 function gotoSignup() {
     window.location.href = 'signup.html'
 }
-
-// back to top
-const scrollBtn = document.getElementById("back-to-top");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-        scrollBtn.classList.add("visible");
-    } else {
-        scrollBtn.classList.remove("visible");
-    }
-});
-
 
 // filter buttons
 
@@ -186,7 +179,7 @@ function displayResturants() {
 
     allRes.forEach((res) => {
         let card = `
-        <div id="resturant" class="hide" data-name="${res.resturantCategory}">
+        <div id="resturant" data-name="${res.resturantCategory}">
             <img src="${res.resturantURL}" alt="restaurant image">
             <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
             <div class="resturant-des">
@@ -212,3 +205,48 @@ function displayResturants() {
 }
 
 displayResturants()
+
+
+
+
+
+
+// for displaying items
+
+
+function showItems(element) {
+    const restaurantName = element.getAttribute("data-name");
+    const items = JSON.parse(localStorage.getItem(restaurantName)) || [];
+
+    const itemList = document.getElementById("itemList");
+    itemList.innerHTML = "";
+
+    if (items.length === 0) {
+        itemList.innerHTML = "<p>No items found for this restaurant.</p>";
+    } else {
+        items.forEach((item, index) => {
+            itemList.innerHTML += `
+                <div class="item border-bottom mb-2 pb-2">
+                    <h6>${item.name}</h6>
+                    <p>${item.description}</p>
+                    <strong>Price: $${item.price}</strong>
+                </div>
+            `;
+        });
+    }
+
+    const itemModal = new bootstrap.Modal(document.getElementById('itemModal'));
+    itemModal.show();
+}
+
+
+let restaurantName = "Kentucky Fried Chicken"; // or dynamically fetched from input
+let items = JSON.parse(localStorage.getItem(restaurantName)) || [];
+
+items.push({
+    name: "Zinger Burger",
+    description: "Crispy chicken with lettuce and mayo",
+    price: 5.99
+});
+
+localStorage.setItem(restaurantName, JSON.stringify(items));

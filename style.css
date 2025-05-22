@@ -210,7 +210,7 @@ nav {
     color: #333;
     cursor: pointer;
     transition: 0.3s;
-    border: 1px solid orange;
+    border: 1px solid #e64100;
     font-size: 13px;
     font-weight: 500;
 }
@@ -220,13 +220,13 @@ nav {
 }
 
 .pill:hover {
-    background-color: orange;
+    background-color: #e64100;
     color: #fff;
 }
 
 
 .pill.active {
-    background-color: orange;
+    background-color: #ff4f00;
     color: white;
 }
 
@@ -280,7 +280,6 @@ nav {
   right: 50px;
   bottom: 60px;
   z-index: 1000;
-  opacity: 0;
 }
 
 /* features */
@@ -796,3 +795,5 @@ nav {
     height: 40px;
   }
 }
+
+

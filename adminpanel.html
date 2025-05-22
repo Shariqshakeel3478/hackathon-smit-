@@ -179,28 +179,44 @@
             <button class="selection-btn" data-name="Shop"><i class="fa-solid fa-store"></i>Shops</button>
         </div>
 
-        <h1>All Resturants</h1>
-        <div class="row" id="resturants">
-            <div id="resturant">
-                <img src="images/fried chicken.jpg" alt="kfc">
-                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
-                <div class="resturant-des">
-                    <p id="res-name">Kentucky Fried Chicken</p>
-                    <div id="orderAndRating">
-                        <div class="rating">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half"></i>
-                        </div>
-                        <div class="orders">
-                            <p id="rating">orders: 2000+</p>
-                        </div>
-                    </div>
 
+        <!-- modal for items -->
+        <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="itemModalLabel">Add Items</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="itemForm">
+                            <input type="hidden" id="currentResName">
+                            <div class="mb-3">
+                                <label for="itemName" class="form-label">Item Name</label>
+                                <input type="text" class="form-control" id="itemName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="itemPrice" class="form-label">Item Price</label>
+                                <input type="number" class="form-control" id="itemPrice" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Item</button>
+                        </form>
+                        <ul class="list-group mt-3" id="itemList"></ul>
+                    </div>
                 </div>
             </div>
+        </div>
+
+
+
+
+
+
+
+
+        <h1>All Resturants</h1>
+        <div class="row" id="resturants">
+
 
 
             <br>
@@ -231,16 +247,109 @@
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous">
 </script>
 <script>
-    let selectBtn = document.querySelectorAll('.selection-btn')
-    selectBtn.forEach(btn => {
-        btn.addEventListener('click', () => {
-            buttons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        });
-    });
+    // let selectBtn = document.querySelectorAll('.selection-btn')
+    // selectBtn.forEach(btn => {
+    //     btn.addEventListener('click', () => {
+    //         buttons.forEach(b => b.classList.remove('active'));
+    //         btn.classList.add('active');
+    //     });
+    // });
 
 
-    // selection buttons
+    // // selection buttons
+
+
+    // let allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
+
+    // function addRes(event) {
+    //     event.preventDefault();
+    //     let resName = document.getElementById('res-name');
+    //     let resURL = document.getElementById('res-url');
+    //     let resCategory = document.getElementById('res-category');
+
+    //     if (!resName.value || !resURL.files.length || !resCategory.value || resCategory.value === '-- Select --') {
+    //         alert('Please fill in all the fields.');
+    //         return;
+    //     }
+    //     const reader = new FileReader();
+
+    //     reader.onload = function () {
+    //         let resturant = {
+    //             name: resName.value,
+    //             resturantURL: reader.result,
+    //             resturantCategory: resCategory.value
+    //         };
+
+    //         allRes.push(resturant);
+    //         localStorage.setItem('Resturants', JSON.stringify(allRes));
+
+    //         Swal.fire({
+    //             title: "Good job!",
+    //             text: "Restaurant Added",
+    //             icon: "success"
+    //         });
+
+    //         displayResturants(); // call here after adding
+    //     }
+
+    //     reader.readAsDataURL(resURL.files[0]);
+
+    // }
+
+    // function displayResturants() {
+    //     let resturantContainer = document.getElementById('resturants');
+    //     const allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
+    //     allRes.forEach((res) => {
+    //         let card = `
+    //     <div id="resturant" data-name="${res.resturantCategory}">
+    //         <img src="${res.resturantURL}" alt="restaurant image">
+    //         <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+    //         <div class="resturant-des">
+    //             <p id="res-name">${res.name}</p>
+    //             <div id="orderAndRating">
+    //                 <div class="rating">
+    //                     <i class="fa-solid fa-star"></i>
+    //                     <i class="fa-solid fa-star"></i>
+    //                     <i class="fa-solid fa-star"></i>
+    //                     <i class="fa-solid fa-star"></i>
+    //                     <i class="fa-solid fa-star-half"></i>
+    //                 </div>
+    //                 <div class="orders">
+    //                     <p class="rating">orders: 2000+</p>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     </div>
+    //     `;
+    //         resturantContainer.innerHTML += card;
+    //     });
+
+
+    //     // filter cards
+
+
+
+    //     const buttons = document.querySelectorAll(".selection-buttons button");
+    //     const cards = document.querySelectorAll("#resturants #resturant");
+
+    //     function filterCards(e) {
+
+    //         buttons.forEach(btn => btn.classList.remove("active"));
+    //         e.currentTarget.classList.add("active");
+    //         const selectedCategory = e.currentTarget.dataset.name;
+
+    //         cards.forEach(card => {
+    //             const cardCategory = card.dataset.name;
+    //             if (selectedCategory === "all" || cardCategory === selectedCategory) {
+    //                 card.classList.remove("hide");
+    //             } else {
+    //                 card.classList.add("hide");
+    //             }
+    //         });
+    //     }
+
+    //     buttons.forEach(button => button.addEventListener("click", filterCards));
+    // }
 
 
     let allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
@@ -273,51 +382,48 @@
                 icon: "success"
             });
 
-            displayResturants(); // call here after adding
+            displayResturants();
         }
 
         reader.readAsDataURL(resURL.files[0]);
-
     }
 
     function displayResturants() {
         let resturantContainer = document.getElementById('resturants');
+        resturantContainer.innerHTML = "";
         const allRes = JSON.parse(localStorage.getItem('Resturants')) || [];
         allRes.forEach((res) => {
-            let card = `
-        <div id="resturant" data-name="${res.resturantCategory}">
-            <img src="${res.resturantURL}" alt="restaurant image">
-            <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
-            <div class="resturant-des">
-                <p id="res-name">${res.name}</p>
-                <div id="orderAndRating">
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half"></i>
-                    </div>
-                    <div class="orders">
-                        <p class="rating">orders: 2000+</p>
+            let card = document.createElement("div");
+            card.setAttribute("id", "resturant");
+            card.setAttribute("data-name", res.resturantCategory);
+            card.innerHTML = `
+                <img src="${res.resturantURL}" alt="restaurant image" style="width: 100%; height: 200px; object-fit: cover;">
+                <p id="discount"><i class="fa-solid fa-tags"></i>10 percent off</p>
+                <div class="resturant-des">
+                    <p id="res-name">${res.name}</p>
+                    <div id="orderAndRating">
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half"></i>
+                        </div>
+                        <div class="orders">
+                            <p class="rating">orders: 2000+</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        `;
-            resturantContainer.innerHTML += card;
+            `;
+            card.style.cursor = "pointer";
+            card.addEventListener("click", () => openItemModal(res.name));
+            resturantContainer.appendChild(card);
         });
-
-
-        // filter cards
-
-
 
         const buttons = document.querySelectorAll(".selection-buttons button");
         const cards = document.querySelectorAll("#resturants #resturant");
 
         function filterCards(e) {
-
             buttons.forEach(btn => btn.classList.remove("active"));
             e.currentTarget.classList.add("active");
             const selectedCategory = e.currentTarget.dataset.name;
@@ -334,6 +440,72 @@
 
         buttons.forEach(button => button.addEventListener("click", filterCards));
     }
+
+    function openItemModal(resName) {
+        document.getElementById("currentResName").value = resName;
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemPrice").value = "";
+        displayItems(resName);
+        new bootstrap.Modal(document.getElementById("itemModal")).show();
+    }
+
+    function displayItems(resName) {
+        let itemList = document.getElementById("itemList");
+        itemList.innerHTML = "";
+        let items = JSON.parse(localStorage.getItem(`items_${resName}`)) || [];
+        items.forEach(item => {
+            let li = document.createElement("li");
+            li.className = "list-group-item d-flex justify-content-between align-items-center";
+            li.innerHTML = `${item.name} - Rs.${item.price}`;
+            itemList.appendChild(li);
+        });
+    }
+
+    document.getElementById("itemForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        let name = document.getElementById("itemName").value;
+        let price = document.getElementById("itemPrice").value;
+        let resName = document.getElementById("currentResName").value;
+
+        let items = JSON.parse(localStorage.getItem(`items_${resName}`)) || [];
+        items.push({
+            name,
+            price
+        });
+        localStorage.setItem(`items_${resName}`, JSON.stringify(items));
+        displayItems(resName);
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemPrice").value = "";
+    });
+
+    document.getElementById("itemForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        let name = document.getElementById("itemName").value.trim();
+        let price = document.getElementById("itemPrice").value.trim();
+        let resName = document.getElementById("currentResName").value;
+
+        if (!name || !price) {
+            alert("Please enter both item name and price.");
+            return;
+        }
+
+        let items = JSON.parse(localStorage.getItem(`items_${resName}`)) || [];
+        items.push({
+            name: name,
+            price: price
+        });
+        localStorage.setItem(`items_${resName}`, JSON.stringify(items));
+
+        displayItems(resName);
+
+        // Clear inputs
+        document.getElementById("itemName").value = "";
+        document.getElementById("itemPrice").value = "";
+    });
+
+
+
+    window.onload = displayResturants;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
